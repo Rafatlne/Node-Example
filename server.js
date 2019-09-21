@@ -30,6 +30,10 @@ function getRandomComplement() {
   return complements[randomIndex];
 }
 
+function getRandomInsult(){
+  const randomIndex = Math.floor(Math.random() * insults.length);
+  return insults[randomIndex].toLocaleLowerCase();
+}
 
 const app = express();
 
@@ -41,6 +45,14 @@ app.get("/complement", function(req, res) {
   res
     .json({
       complement: getRandomComplement()
+    })
+    .end();
+});
+
+app.get("/insult", function(req, res) {
+  res
+    .json({
+      insult: getRandomInsult()
     })
     .end();
 });
