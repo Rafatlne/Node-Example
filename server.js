@@ -1,36 +1,18 @@
 const express = require("express");
 const path = require("path");
+const fs = require('fs');
 
-const complements = [
-  "You like nice today",
-  "That dress looks nice on you",
-  "Have you been working out?",
-  "You can do hard things",
-  "You've gotten far in this course. You're really smart",
-  "You're programming! How cool is that?",
-  "I'm really proud of you",
-  "You made this",
-  "You've learned a lot of things, and that's pretty hard to do"
-];
+let quotes = JSON.parse(fs.readFileSync('./quotes.json'));
 
-const insults = [
-  "YOU’RE A STREAM OF DICK JUICE AND IF I’M LUCKY YOU WILL CATCH EBOLA.",
-  "YOU ARE A WETTER’S PECKER AND YOU DESERVE TO FUCK A DOG IN YOUR SLEEP.",
-  "YOU ARE AN OBESE GRANDMOTHER’S CAMEL TOE AND I HOPE YOU WILL FINALLY BRUSH YOUR TEETH.",
-  "YOU ARE CLEARLY A FUCKING IDIOT AND I REALLY HOPE YOU FALL DOWN AN OPEN MANHOLE.",
-  "YOU’RE A HAIRY AXE-WOUND AND I'D PAY TO WATCH YOU SWALLOW A LEAKING AA BATTERY.",
-  "YOU’RE AN ASSHAT AND I'D PAY TO WATCH YOU STAND UNDER A ROCKSLIDE.",
-  "YOU ARE A COCK-WAFFLE AND YOU WILL HOPEFULLY STERILISE YOURSELF.",
-  "YOU ARE A SHITCUNT AND I REALLY HOPE YOU HAVE YOUR CREDIT CARD STOLEN BY RUSSIANS.",
-  "YOU ARE A CUNT AND IF I’M LUCKY YOU WILL REALISE HOW MUCH YOUR FAMILY DESPISES YOU."
-]
+const complements = quotes['compliments'];
+const insults = quotes['insults'];
 
-function getRandomComplement() {
+let getRandomComplement = () => {
   const randomIndex = Math.floor(Math.random() * complements.length);
   return complements[randomIndex];
 }
 
-function getRandomInsult(){
+let getRandomInsult = () => {
   const randomIndex = Math.floor(Math.random() * insults.length);
   return insults[randomIndex].toLocaleLowerCase();
 }
